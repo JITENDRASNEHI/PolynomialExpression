@@ -40,12 +40,13 @@ public class Polynomial {
         for (int i = 0; i < exp.length; i++) {
             if(exp[i]!=0){
                 if(i==0) sb.append(exp[i] + "+");
-                else if(i==1) sb.append(exp[i] + "x^"+ "+");
+                else if(i==1) sb.append(exp[i] + "x"+ "+");
                 else sb.append(exp[i] + "x^" + i + "+");
             }
         }
         String outp = sb.toString();
         outp = outp.replaceAll("\\+\\-","-");
+        if(outp.length()==0) return "0";
         return outp.substring(0,outp.length()-1);
     }
 
@@ -128,7 +129,7 @@ public class Polynomial {
         Polynomial obj = new Polynomial(e1,e2);
         String arr1[] = obj.modifyExpression(e1);
         String arr2[] = obj.modifyExpression(e2);
-        int res[] = obj.subtract(obj.createMap(arr1),obj.createMap(arr2));
+        int res[] = obj.add(obj.createMap(arr1),obj.createMap(arr2));
 //        for(int x:res)
 //            System.out.println(x+" " );
          System.out.println(obj.getExpression(res));
